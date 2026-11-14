@@ -324,7 +324,7 @@ class TrilogyApp:
             self.pr = subprocess.Popen([exe, "--fullscreen", gp])
             self.r.withdraw()
             self.r.after(1000, self.watch)
-            except Exception as e:
+        except Exception as e:
             self.r.deiconify()
             messagebox.showerror("Error", str(e))
             self.b_play.configure(state="normal", text=self.t(8))
