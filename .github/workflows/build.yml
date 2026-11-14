@@ -1,1 +1,17 @@
-
+name: Build Trilogy EXE
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyinstaller pillow
+      - run: pyinstaller --noconsole --onefile --icon=assets/icon.ico --add-data "assets;assets" --name Ben10Trilogy launcher.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Ben10Trilogy-Windows
+          path: dist/Ben10Trilogy.exe
+          
